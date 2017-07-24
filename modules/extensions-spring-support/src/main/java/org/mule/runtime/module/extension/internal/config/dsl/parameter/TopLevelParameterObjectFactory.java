@@ -51,8 +51,8 @@ public class TopLevelParameterObjectFactory extends AbstractExtensionObjectFacto
       // TODO MULE-10919 - This logic is similar to that of the resolverset object builder and should
       // be generalized
 
-      //resolveParameters(objectType, builder);
-      //resolveParameterGroups(objectType, builder);
+      resolveParameters(objectType, builder);
+      resolveParameterGroups(objectType, builder);
 
       if (name != null) {
         builder.setName(name);
