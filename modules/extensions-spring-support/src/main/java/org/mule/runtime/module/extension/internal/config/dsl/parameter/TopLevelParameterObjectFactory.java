@@ -33,6 +33,7 @@ public class TopLevelParameterObjectFactory extends AbstractExtensionObjectFacto
   private Class<Object> objectClass;
   private final ObjectType objectType;
   private final ClassLoader classLoader;
+  private String name;
 
   public TopLevelParameterObjectFactory(ObjectType type, ClassLoader classLoader, MuleContext muleContext) {
     super(muleContext);
@@ -50,13 +51,21 @@ public class TopLevelParameterObjectFactory extends AbstractExtensionObjectFacto
       // TODO MULE-10919 - This logic is similar to that of the resolverset object builder and should
       // be generalized
 
-      resolveParameters(objectType, builder);
-      resolveParameterGroups(objectType, builder);
+      //resolveParameters(objectType, builder);
+      //resolveParameterGroups(objectType, builder);
+
+      if (name != null) {
+        builder.setName(name);
+      }
 
       ValueResolver<Object> resolver = new ObjectBuilderValueResolver<>(builder, muleContext);
       return resolver.isDynamic() ? resolver : resolver.resolve(from(getInitialiserEvent(muleContext)));
     }, Exception.class, exception -> {
       throw exception;
     });
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }
