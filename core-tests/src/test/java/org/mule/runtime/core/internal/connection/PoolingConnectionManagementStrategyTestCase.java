@@ -157,7 +157,7 @@ public class PoolingConnectionManagementStrategyTestCase extends AbstractMuleCon
     ConnectionProvider<Lifecycle> connectionProvider = mock(ConnectionProvider.class);
     when(connectionProvider.connect()).thenAnswer(i -> mock(Lifecycle.class));
     when(connectionProvider.validate(anyObject())).thenReturn(ConnectionValidationResult.success());
-    this.connectionProvider = spy(new LifecycleAwareConnectionProviderWrapper<>(connectionProvider, muleContext));
+    this.connectionProvider = spy(new DefaultConnectionProviderWrapper<>(connectionProvider, muleContext));
   }
 
   private void initStrategy() {

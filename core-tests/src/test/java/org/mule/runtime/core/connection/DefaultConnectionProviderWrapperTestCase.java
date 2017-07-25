@@ -14,7 +14,7 @@ import org.mule.runtime.api.connection.ConnectionException;
 import org.mule.runtime.api.connection.ConnectionProvider;
 import org.mule.runtime.api.connection.ConnectionValidationResult;
 import org.mule.runtime.api.lifecycle.Lifecycle;
-import org.mule.runtime.core.internal.connection.LifecycleAwareConnectionProviderWrapper;
+import org.mule.runtime.core.internal.connection.DefaultConnectionProviderWrapper;
 import org.mule.tck.junit4.AbstractMuleContextTestCase;
 import org.mule.tck.size.SmallTest;
 
@@ -29,7 +29,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @SmallTest
 @RunWith(MockitoJUnitRunner.class)
-public class LifecycleAwareConnectionProviderWrapperTestCase extends AbstractMuleContextTestCase {
+public class DefaultConnectionProviderWrapperTestCase extends AbstractMuleContextTestCase {
 
   private static final String ERROR_MESSAGE = "BOOM ><";
 
@@ -42,13 +42,13 @@ public class LifecycleAwareConnectionProviderWrapperTestCase extends AbstractMul
   @Mock
   private Lifecycle connection;
 
-  private LifecycleAwareConnectionProviderWrapper<Lifecycle> wrapper;
+  private DefaultConnectionProviderWrapper<Lifecycle> wrapper;
 
   @Before
   public void before() throws Exception {
     when(connectionProvider.connect()).thenReturn(connection);
 
-    wrapper = new LifecycleAwareConnectionProviderWrapper<>(connectionProvider, muleContext);
+    wrapper = new DefaultConnectionProviderWrapper<>(connectionProvider, muleContext);
     muleContext.start();
   }
 
@@ -78,7 +78,7 @@ public class LifecycleAwareConnectionProviderWrapperTestCase extends AbstractMul
     exception.expect(ConnectionException.class);
     exception.expectCause(instanceOf(NullPointerException.class));
     exception.expectMessage(ERROR_MESSAGE);
-    wrapper = new LifecycleAwareConnectionProviderWrapper(new TestProvider(), muleContext);
+    wrapper = new DefaultConnectionProviderWrapper(new TestProvider(), muleContext);
     wrapper.connect();
   }
 
