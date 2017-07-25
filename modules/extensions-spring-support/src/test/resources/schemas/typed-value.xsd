@@ -91,6 +91,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -113,6 +118,11 @@
         <xs:attribute type="xs:string" use="optional" name="target">
           <xs:annotation>
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -163,6 +173,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -189,6 +204,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -202,6 +222,11 @@
         <xs:attribute type="xs:string" use="optional" name="target">
           <xs:annotation>
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -226,6 +251,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -246,6 +276,11 @@
         <xs:attribute type="xs:string" use="optional" name="target">
           <xs:annotation>
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -278,6 +313,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -298,6 +338,11 @@
         <xs:attribute type="xs:string" use="optional" name="target">
           <xs:annotation>
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -327,6 +372,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -351,6 +401,11 @@
         <xs:attribute type="xs:string" use="optional" name="target">
           <xs:annotation>
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -387,6 +442,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -414,6 +474,11 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -434,7 +499,25 @@
             <xs:documentation>The name of a variable on which the operation's output will be placed</xs:documentation>
           </xs:annotation>
         </xs:attribute>
+        <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/typed-value" type="org.mule.runtime.api.meta.TargetOutputEnumType" use="optional" name="targetOutput">
+          <xs:annotation>
+            <xs:documentation>The type of the operation's output that will be stored in the target variable</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:simpleType name="org.mule.runtime.api.meta.TargetOutputEnumType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PAYLOAD"></xs:enumeration>
+          <xs:enumeration value="MESSAGE"></xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
 </xs:schema>

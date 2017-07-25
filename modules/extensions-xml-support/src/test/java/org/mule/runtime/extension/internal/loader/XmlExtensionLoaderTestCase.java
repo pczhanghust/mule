@@ -11,11 +11,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.mule.runtime.api.dsl.DslResolvingContext.getDefault;
+import static org.mule.runtime.extension.api.ExtensionConstants.TARGET_OUTPUT_PARAMETER_DESCRIPTION;
+import static org.mule.runtime.extension.api.ExtensionConstants.TARGET_OUTPUT_PARAMETER_NAME;
 import static org.mule.runtime.extension.api.ExtensionConstants.TARGET_PARAMETER_DESCRIPTION;
 import static org.mule.runtime.extension.api.ExtensionConstants.TARGET_PARAMETER_NAME;
 import static org.mule.runtime.extension.internal.loader.XmlExtensionLoaderDelegate.CONFIG_NAME;
 import static org.mule.runtime.extension.internal.loader.XmlExtensionModelLoader.RESOURCE_XML;
-import org.junit.Test;
 import org.mule.metadata.api.model.MetadataFormat;
 import org.mule.metadata.api.model.ObjectType;
 import org.mule.runtime.api.meta.MuleVersion;
@@ -31,6 +32,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import org.junit.Test;
 
 public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
 
@@ -49,10 +52,11 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
 
     Optional<OperationModel> operationModel = extensionModel.getOperationModel("set-payload-concat-params-values");
     assertThat(operationModel.isPresent(), is(true));
-    assertThat(operationModel.get().getAllParameterModels().size(), is(3));
+    assertThat(operationModel.get().getAllParameterModels().size(), is(4));
     assertThat(operationModel.get().getAllParameterModels().get(0).getName(), is("value1"));
     assertThat(operationModel.get().getAllParameterModels().get(1).getName(), is("value2"));
     assertThat(operationModel.get().getAllParameterModels().get(2).getName(), is(TARGET_PARAMETER_NAME));
+    assertThat(operationModel.get().getAllParameterModels().get(3).getName(), is(TARGET_OUTPUT_PARAMETER_NAME));
 
     Optional<OperationComponentModelModelProperty> modelProperty =
         operationModel.get().getModelProperty(OperationComponentModelModelProperty.class);
@@ -83,9 +87,10 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
 
     Optional<OperationModel> operationModel = configurationModel.getOperationModel("set-payload-add-param-and-property-values");
     assertThat(operationModel.isPresent(), is(true));
-    assertThat(operationModel.get().getAllParameterModels().size(), is(2));
+    assertThat(operationModel.get().getAllParameterModels().size(), is(3));
     assertThat(operationModel.get().getAllParameterModels().get(0).getName(), is("value1"));
     assertThat(operationModel.get().getAllParameterModels().get(1).getName(), is(TARGET_PARAMETER_NAME));
+    assertThat(operationModel.get().getAllParameterModels().get(2).getName(), is(TARGET_OUTPUT_PARAMETER_NAME));
 
 
     Optional<OperationComponentModelModelProperty> modelProperty =
@@ -119,10 +124,11 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
 
     Optional<OperationModel> operationModel = configurationModel.getOperationModel("do-login");
     assertThat(operationModel.isPresent(), is(true));
-    assertThat(operationModel.get().getAllParameterModels().size(), is(3));
+    assertThat(operationModel.get().getAllParameterModels().size(), is(4));
     assertThat(operationModel.get().getAllParameterModels().get(0).getName(), is("someUser"));
     assertThat(operationModel.get().getAllParameterModels().get(1).getName(), is("somePass"));
     assertThat(operationModel.get().getAllParameterModels().get(2).getName(), is(TARGET_PARAMETER_NAME));
+    assertThat(operationModel.get().getAllParameterModels().get(3).getName(), is(TARGET_OUTPUT_PARAMETER_NAME));
 
 
     Optional<OperationComponentModelModelProperty> modelProperty =
@@ -145,10 +151,12 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
     Optional<OperationModel> operationModel = extensionModel.getOperationModel("operation-with-custom-types");
     assertThat(operationModel.isPresent(), is(true));
     final OperationModel operation = operationModel.get();
-    assertThat(operation.getAllParameterModels().size(), is(2));
+    assertThat(operation.getAllParameterModels().size(), is(3));
     final ParameterModel parameterValueModel = operation.getAllParameterModels().get(0);
     assertThat(parameterValueModel.getName(), is("value"));
     assertThat(operation.getAllParameterModels().get(1).getName(), is(TARGET_PARAMETER_NAME));
+    assertThat(operation.getAllParameterModels().get(2).getName(), is(TARGET_OUTPUT_PARAMETER_NAME));
+
     assertThat(parameterValueModel.getType().getMetadataFormat(), is(MetadataFormat.JSON));
     assertThat(parameterValueModel.getType(), instanceOf(ObjectType.class));
     assertThat(((ObjectType) parameterValueModel.getType()).getFields().size(), is(2));
@@ -177,8 +185,9 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
     Optional<OperationModel> operationModel = extensionModel.getOperationModel("operation-with-custom-types");
     assertThat(operationModel.isPresent(), is(true));
     final OperationModel operation = operationModel.get();
-    assertThat(operation.getAllParameterModels().size(), is(3));
+    assertThat(operation.getAllParameterModels().size(), is(4));
     assertThat(operation.getAllParameterModels().get(2).getName(), is(TARGET_PARAMETER_NAME));
+    assertThat(operation.getAllParameterModels().get(3).getName(), is(TARGET_OUTPUT_PARAMETER_NAME));
 
     final ParameterModel firstParameterValueModel = operation.getAllParameterModels().get(0);
     assertThat(firstParameterValueModel.getName(), is("value"));
@@ -238,7 +247,7 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
     assertThat(operationModel.isPresent(), is(true));
     assertThat(operationModel.get().getDescription(), is("Documentation for the operation"));
 
-    assertThat(operationModel.get().getAllParameterModels().size(), is(3));
+    assertThat(operationModel.get().getAllParameterModels().size(), is(4));
     assertThat(operationModel.get().getAllParameterModels().get(0).getName(), is("paramWithDoc"));
     assertThat(operationModel.get().getAllParameterModels().get(0).getDescription(), is("Documentation for the parameter"));
     assertThat(operationModel.get().getAllParameterModels().get(1).getName(), is("hiddenParamWithDoc"));
@@ -248,6 +257,9 @@ public class XmlExtensionLoaderTestCase extends AbstractMuleTestCase {
     assertThat(operationModel.get().getAllParameterModels().get(1).getLayoutModel().get().isPassword(), is(true));
     assertThat(operationModel.get().getAllParameterModels().get(2).getName(), is(TARGET_PARAMETER_NAME));
     assertThat(operationModel.get().getAllParameterModels().get(2).getDescription(), is(TARGET_PARAMETER_DESCRIPTION));
+
+    assertThat(operationModel.get().getAllParameterModels().get(3).getName(), is(TARGET_OUTPUT_PARAMETER_NAME));
+    assertThat(operationModel.get().getAllParameterModels().get(3).getDescription(), is(TARGET_OUTPUT_PARAMETER_DESCRIPTION));
 
     assertThat(operationModel.get().getOutput().getDescription(), is("Documentation for the output"));
 

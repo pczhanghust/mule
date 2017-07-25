@@ -11,6 +11,7 @@ import static org.mule.runtime.api.i18n.I18nMessageFactory.createStaticMessage;
 import static org.mule.runtime.core.api.util.ExceptionUtils.extractCauseOfType;
 import org.mule.runtime.api.connection.ConnectionProvider;
 import org.mule.runtime.api.exception.MuleRuntimeException;
+import org.mule.runtime.api.meta.TargetOutput;
 import org.mule.runtime.api.meta.model.ExtensionModel;
 import org.mule.runtime.api.meta.model.operation.OperationModel;
 import org.mule.runtime.core.api.Event;
@@ -53,12 +54,14 @@ public class OAuthOperationMessageProcessor extends OperationMessageProcessor {
                                         OperationModel operationModel,
                                         ConfigurationProvider configurationProvider,
                                         String target,
+                                        TargetOutput targetOutput,
                                         ResolverSet resolverSet,
                                         CursorProviderFactory cursorProviderFactory,
                                         ExtensionManager extensionManager,
                                         PolicyManager policyManager,
                                         ExtensionsOAuthManager oauthManager) {
-    super(extensionModel, operationModel, configurationProvider, target, resolverSet, cursorProviderFactory, extensionManager,
+    super(extensionModel, operationModel, configurationProvider, target, targetOutput, resolverSet, cursorProviderFactory,
+          extensionManager,
           policyManager);
     this.oauthManager = oauthManager;
   }

@@ -17,20 +17,13 @@ import static org.custommonkey.xmlunit.XMLUnit.setNormalizeWhitespace;
 import static org.mule.runtime.api.dsl.DslResolvingContext.getDefault;
 import static org.mule.runtime.extension.internal.loader.XmlExtensionLoaderDelegate.XSD_SUFFIX;
 import static org.mule.runtime.extension.internal.loader.XmlExtensionModelLoader.RESOURCE_XML;
-import org.custommonkey.xmlunit.DetailedDiff;
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.Difference;
-import org.custommonkey.xmlunit.XMLUnit;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.mule.runtime.api.meta.model.ExtensionModel;
 import org.mule.runtime.core.api.util.IOUtils;
 import org.mule.runtime.extension.api.resources.GeneratedResource;
 import org.mule.runtime.module.extension.internal.capability.xml.schema.SchemaXmlResourceFactory;
 import org.mule.tck.junit4.AbstractMuleTestCase;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,6 +32,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+
+import org.custommonkey.xmlunit.DetailedDiff;
+import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.Difference;
+import org.custommonkey.xmlunit.XMLUnit;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
  * Tests to ensure XSD generation coming from an XML using the {@link ExtensionModel} mechanism.

@@ -24,7 +24,6 @@ import org.mule.runtime.api.meta.model.ExtensionModel;
 import org.mule.runtime.api.meta.model.XmlDslModel;
 import org.mule.runtime.api.meta.type.TypeCatalog;
 import org.mule.runtime.core.api.registry.ServiceRegistry;
-import org.mule.runtime.core.api.util.IOUtils;
 import org.mule.runtime.extension.api.loader.DeclarationEnricher;
 import org.mule.runtime.extension.api.loader.ExtensionModelLoader;
 import org.mule.runtime.module.extension.internal.capability.xml.schema.SchemaGenerator;
@@ -52,14 +51,8 @@ import org.mule.test.transactional.TransactionalExtension;
 import org.mule.test.typed.value.extension.extension.TypedValueExtension;
 import org.mule.test.values.extension.ValuesExtension;
 import org.mule.test.vegan.extension.VeganExtension;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -70,6 +63,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 @SmallTest
 @RunWith(Parameterized.class)
