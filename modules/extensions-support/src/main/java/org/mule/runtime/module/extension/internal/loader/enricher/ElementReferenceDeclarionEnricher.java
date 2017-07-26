@@ -66,7 +66,7 @@ public final class ElementReferenceDeclarionEnricher extends AbstractAnnotatedDe
     if (ref != null) {
       return singletonList(new ElementReference(ref.namespace(), ref.name(), CONFIG));
     }
-    
+
     if (element.getAnnotation(FlowReference.class) != null) {
       return singletonList(new ElementReference("mule", "flow", FLOW));
     }
