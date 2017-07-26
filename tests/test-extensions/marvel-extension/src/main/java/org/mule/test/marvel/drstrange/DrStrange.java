@@ -16,6 +16,7 @@ import org.mule.runtime.extension.api.annotation.Sources;
 import org.mule.runtime.extension.api.annotation.connectivity.ConnectionProviders;
 import org.mule.runtime.extension.api.annotation.param.Optional;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
+import org.mule.runtime.extension.api.annotation.param.reference.ObjectStoreReference;
 import org.mule.test.marvel.ironman.IronMan;
 
 /**
@@ -34,4 +35,9 @@ public class DrStrange {
   @Parameter
   @Optional
   private String ironManConfig;
+
+  @Parameter
+  @Optional
+  @ObjectStoreReference
+  private String spellStore;
 }
