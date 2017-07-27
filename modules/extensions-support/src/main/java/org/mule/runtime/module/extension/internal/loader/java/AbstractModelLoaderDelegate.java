@@ -9,7 +9,7 @@ package org.mule.runtime.module.extension.internal.loader.java;
 import static java.lang.String.format;
 import static org.mule.runtime.extension.api.util.NameUtils.getComponentDeclarationTypeName;
 import org.mule.metadata.api.ClassTypeLoader;
-import org.mule.runtime.api.meta.model.declaration.fluent.ComponentDeclarer;
+import org.mule.runtime.api.meta.model.declaration.fluent.ExecutableComponentDeclarer;
 import org.mule.runtime.extension.api.annotation.param.Connection;
 import org.mule.runtime.extension.api.connectivity.TransactionalConnection;
 import org.mule.runtime.extension.api.exception.IllegalOperationModelDefinitionException;
@@ -65,7 +65,7 @@ abstract class AbstractModelLoaderDelegate {
     return loader.getTypeLoader();
   }
 
-  void processComponentConnectivity(ComponentDeclarer componentDeclarer, WithParameters component, WithAlias alias) {
+  void processComponentConnectivity(ExecutableComponentDeclarer componentDeclarer, WithParameters component, WithAlias alias) {
     final List<ExtensionParameter> connectionParameters = component.getParametersAnnotatedWith(Connection.class);
     if (connectionParameters.isEmpty()) {
       componentDeclarer.requiresConnection(false).transactional(false);

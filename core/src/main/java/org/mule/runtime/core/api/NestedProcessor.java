@@ -56,6 +56,8 @@ public interface NestedProcessor<T, P, A> {
    * @param payload The payload of the message
    * @return The return payload for the processor chain
    */
-  default Result<P, A> process(TypedValue payload, TypedValue attributes) throws Exception{return null;}
+  default Result<P, A> process(TypedValue payload, TypedValue attributes) throws Exception {
+    return null;
+  }
 
 }

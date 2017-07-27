@@ -13,6 +13,7 @@ import static org.mule.runtime.api.util.Preconditions.checkArgument;
 import static org.mule.runtime.module.extension.internal.util.MuleExtensionUtils.toActionCode;
 import org.mule.runtime.api.component.location.ComponentLocation;
 import org.mule.runtime.api.meta.model.ComponentModel;
+import org.mule.runtime.api.meta.model.ExecutableComponentModel;
 import org.mule.runtime.api.meta.model.ExtensionModel;
 import org.mule.runtime.api.meta.model.parameter.ParameterModel;
 import org.mule.runtime.api.util.LazyValue;
@@ -90,7 +91,9 @@ public class DefaultExecutionContext<M extends ComponentModel> implements Execut
     this.muleContext = muleContext;
     this.flowConstruct = flowConstruct;
     this.location = location;
-    transactionConfig = new LazyValue<>(() -> componentModel.isTransactional() ? of(buildTransactionConfig()) : empty());
+
+    final boolean isTransactional = isTransactional(componentModel);
+    this.transactionConfig = new LazyValue<>(() -> isTransactional ? of(buildTransactionConfig()) : empty());
   }
 
   /**
@@ -247,5 +250,9 @@ public class DefaultExecutionContext<M extends ComponentModel> implements Execut
         .stream()
         .filter(p -> p.getModelProperty(TransactionalActionModelProperty.class).isPresent())
         .findAny();
+  }
+
+  private boolean isTransactional(M componentModel) {
+    return componentModel instanceof ExecutableComponentModel && ((ExecutableComponentModel) componentModel).isTransactional();
   }
 }

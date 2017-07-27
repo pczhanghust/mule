@@ -6,26 +6,16 @@
  */
 package org.mule.test.heisenberg.extension;
 
-import org.mule.runtime.core.api.NestedProcessor;
-import org.mule.runtime.extension.api.annotation.param.Optional;
-import org.mule.runtime.extension.api.runtime.operation.Result;
-
-import java.lang.annotation.Repeatable;
-import java.util.List;
-
 /**
  * //TODO
  */
 public class HeisenbergTry {
 
-  public Result<Object, Object> tryThing(NestedProcessor<HeisenbergSource> source,
-                                         Route<HeisenbergOperations> route,
-                                         @Optional @Size(min=0, max=1) List<Route<HeisenbergOperations>> routes,
-                                         List<NestedProcessor<HeisenbergOperations>> singleRoute,
-                                         @Repeatable(minOccurs="1", maxOccurs="unlimited")List<NestedProcessor> repeatableRoute){
-
-
-
-  }
+  // public Result<Object, Object> tryThing(NestedProcessor<HeisenbergSource> source,
+  //                                        Route<HeisenbergOperations> route,
+  //                                        @Optional @Size(min=0, max=1) List<Route<HeisenbergOperations>> routes,
+  //                                        List<NestedProcessor<HeisenbergOperations>> singleRoute,
+  //                                        @Repeatable(minOccurs="1", maxOccurs="unlimited")List<NestedProcessor> repeatableRoute){
+  // }
 
 }

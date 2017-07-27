@@ -19,6 +19,7 @@ import org.mule.runtime.api.meta.model.declaration.fluent.ParameterDeclarer;
 import org.mule.runtime.api.meta.model.declaration.fluent.ParameterGroupDeclaration;
 import org.mule.runtime.api.meta.model.declaration.fluent.SourceDeclaration;
 import org.mule.runtime.api.meta.model.declaration.fluent.TypedDeclaration;
+import org.mule.runtime.api.meta.model.declaration.fluent.WithOutputDeclaration;
 import org.mule.runtime.core.internal.metadata.DefaultMetadataResolverFactory;
 import org.mule.runtime.core.internal.metadata.NullMetadataResolverFactory;
 import org.mule.runtime.extension.api.annotation.metadata.MetadataKeyId;
@@ -31,11 +32,11 @@ import org.mule.runtime.extension.api.exception.IllegalParameterModelDefinitionE
 import org.mule.runtime.extension.api.loader.DeclarationEnricher;
 import org.mule.runtime.extension.api.loader.ExtensionLoadingContext;
 import org.mule.runtime.extension.api.metadata.MetadataResolverFactory;
+import org.mule.runtime.extension.internal.property.MetadataKeyIdModelProperty;
+import org.mule.runtime.extension.internal.property.MetadataKeyPartModelProperty;
 import org.mule.runtime.module.extension.internal.loader.java.property.ImplementingMethodModelProperty;
 import org.mule.runtime.module.extension.internal.loader.java.property.ImplementingParameterModelProperty;
 import org.mule.runtime.module.extension.internal.loader.java.property.ImplementingTypeModelProperty;
-import org.mule.runtime.extension.internal.property.MetadataKeyIdModelProperty;
-import org.mule.runtime.extension.internal.property.MetadataKeyPartModelProperty;
 import org.mule.runtime.module.extension.internal.loader.java.property.MetadataResolverFactoryModelProperty;
 import org.mule.runtime.module.extension.internal.loader.java.property.ParameterGroupModelProperty;
 import org.mule.runtime.module.extension.internal.loader.java.property.QueryParameterModelProperty;
@@ -130,8 +131,10 @@ public class DynamicMetadataDeclarationEnricher implements DeclarationEnricher {
       MetadataResolverFactory metadataResolverFactory = getMetadataResolverFactory(metadataScope);
       declaration.addModelProperty(new MetadataResolverFactoryModelProperty(metadataResolverFactory));
       declareMetadataKeyId(declaration);
-      declareOutputResolvers(declaration, metadataScope);
       declareInputResolvers(declaration, metadataScope);
+      if (declaration instanceof WithOutputDeclaration) {
+        declareOutputResolvers((WithOutputDeclaration) declaration, metadataScope);
+      }
     }
 
     private void enrichWithDsql(OperationDeclaration declaration, Method method) {
@@ -177,7 +180,7 @@ public class DynamicMetadataDeclarationEnricher implements DeclarationEnricher {
       }
     }
 
-    private void declareOutputResolvers(ComponentDeclaration<?> declaration, MetadataScopeAdapter metadataScope) {
+    private void declareOutputResolvers(WithOutputDeclaration declaration, MetadataScopeAdapter metadataScope) {
       if (metadataScope.hasOutputResolver()) {
         declareDynamicType(declaration.getOutput());
       }

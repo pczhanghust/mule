@@ -35,6 +35,7 @@ import org.mule.runtime.api.message.Message;
 import org.mule.runtime.api.meta.model.ComponentModel;
 import org.mule.runtime.api.meta.model.EnrichableModel;
 import org.mule.runtime.api.meta.model.ExtensionModel;
+import org.mule.runtime.api.meta.model.HasOutputModel;
 import org.mule.runtime.api.meta.model.ModelProperty;
 import org.mule.runtime.api.meta.model.XmlDslModel;
 import org.mule.runtime.api.meta.model.config.ConfigurationModel;
@@ -109,7 +110,7 @@ public class MuleExtensionUtils {
    * @param componentModel a {@link ComponentModel}
    * @return Whether the {@code componentModel} returns a list of messages
    */
-  public static boolean returnsListOfMessages(ComponentModel componentModel) {
+  public static boolean returnsListOfMessages(HasOutputModel componentModel) {
     MetadataType outputType = componentModel.getOutput().getType();
     return outputType instanceof ArrayType &&
         Message.class.getName().equals(getTypeId(((ArrayType) outputType).getType()).orElse(null));

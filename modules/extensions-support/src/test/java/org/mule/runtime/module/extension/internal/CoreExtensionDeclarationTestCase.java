@@ -7,9 +7,7 @@
 package org.mule.runtime.module.extension.internal;
 
 import static java.util.Collections.emptySet;
-import static org.assertj.core.util.Arrays.isNullOrEmpty;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -26,10 +24,9 @@ import static org.mule.runtime.api.meta.model.tck.TestCoreExtensionDeclarer.WHEN
 import static org.mule.test.module.extension.internal.util.ExtensionsTestUtils.assertType;
 import org.mule.metadata.api.model.StringType;
 import org.mule.runtime.api.meta.model.ExtensionModel;
-import org.mule.runtime.api.meta.model.stereotype.Stereotype;
-import org.mule.runtime.api.meta.model.operation.RouteModel;
-import org.mule.runtime.api.meta.model.operation.RouterModel;
-import org.mule.runtime.api.meta.model.operation.ScopeModel;
+import org.mule.runtime.api.meta.model.construct.ConstructModel;
+import org.mule.runtime.api.meta.model.nested.NestableElementModel;
+import org.mule.runtime.api.meta.model.nested.NestedRouteModel;
 import org.mule.runtime.api.meta.model.parameter.ParameterModel;
 import org.mule.runtime.api.meta.model.tck.TestCoreExtensionDeclarer;
 import org.mule.runtime.extension.api.loader.ExtensionLoadingContext;
@@ -78,18 +75,18 @@ public class CoreExtensionDeclarationTestCase extends AbstractJavaExtensionDecla
 
   @Test
   public void choiceRouter() {
-    RouterModel choice = (RouterModel) extensionModel.getOperationModel(CHOICE_OPERATION_NAME).get();
+    ConstructModel choice = extensionModel.getConstructModel(CHOICE_OPERATION_NAME).get();
     assertThat(choice.getAllParameterModels(), hasSize(0));
 
-    List<RouteModel> routes = choice.getRouteModels();
+    List<? extends NestableElementModel> routes = choice.getNestedComponents();
     assertThat(routes, hasSize(2));
-    assertRoute(routes.get(0), WHEN_ROUTE_NAME, 1, null);
-    assertRoute(routes.get(1), OTHERWISE_ROUTE_NAME, 0, 1);
+    assertRoute((NestedRouteModel) routes.get(0), WHEN_ROUTE_NAME, 1, null);
+    assertRoute((NestedRouteModel) routes.get(1), OTHERWISE_ROUTE_NAME, 0, 1);
   }
 
   @Test
   public void foreachScope() {
-    ScopeModel foreach = (ScopeModel) extensionModel.getOperationModel(FOREACH_OPERATION_NAME).get();
+    ConstructModel foreach = extensionModel.getConstructModel(FOREACH_OPERATION_NAME).get();
     assertThat(foreach.getAllParameterModels(), hasSize(1));
     ParameterModel parameter = foreach.getAllParameterModels().get(0);
 
@@ -98,19 +95,13 @@ public class CoreExtensionDeclarationTestCase extends AbstractJavaExtensionDecla
 
   }
 
-  private void assertRoute(RouteModel route, String name, int minOccurs, Integer maxOccurs, Stereotype... stereotypes) {
+  private void assertRoute(NestedRouteModel route, String name, int minOccurs, Integer maxOccurs) {
     assertThat(route.getName(), is(name));
     assertThat(route.getMinOccurs(), is(minOccurs));
     if (maxOccurs != null) {
       assertThat(route.getMaxOccurs().get(), is(maxOccurs));
     } else {
       assertThat(route.getMaxOccurs().isPresent(), is(false));
-    }
-
-    if (isNullOrEmpty(stereotypes)) {
-      assertThat(route.getAllowedStereotypes().isPresent(), is(false));
-    } else {
-      assertThat(route.getAllowedStereotypes().get(), containsInAnyOrder(stereotypes));
     }
   }
 }
